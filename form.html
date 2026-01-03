@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Form</title>
+</head>
+<body>
+    <div>
+        <h2>Subject Feedback Form </h2>
+        <form action="/action.php">
+            <input type="text" placeholder="Username"><br><br>
+            <input type="password" placeholder="Password"><br>
+            <br>
+            <h3>Select Your Class</h3>
+            <label for ="101">
+                <input type="radio" value="Class XI" name="Class" id ="101"> Class XI
+            </label>
+            <label for ="102">
+                <input type="radio" value="Class XII" name="Class" id ="102"> Class XII
+            </label><br>
+            
+            <h3>Choose your Stream Subject</h3>
+            
+            <label for="Math">
+                <input type="checkbox" value="math" name="Subject" id="101">Math       
+                 </label><br>
+            <label for="Physics">
+                    <input type="checkbox" value= "Physics" name="Subject" id="101">Physics   
+                 </label><br>
+            <label for="Chemistry">
+                        <input type="checkbox" value="Chemistry" name="Subject" id="101">Chemistry       
+                </label><br>
+             <label for="Biology">
+                            <input type="checkbox" value="Biology" name="Subject" id="101">Biology       
+                 </label>    <br> 
+            <h3>Feedback</h3>     
+             <textarea name="Feedback" id="101" placeholder="PLease give your feedback here"rows=8></textarea> feedback</textarea>
+             <br><br>
+             <input type="submit" value="submit">
+        </form>
+    </div>
+</body>
+</html>
