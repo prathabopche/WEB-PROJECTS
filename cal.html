@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #f5f8f7, #ACB6E5);
+    }
+
+    .calculator {
+      width: 320px;
+      background: #222;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .display {
+      background: #111;
+      color: #0f0;
+      font-size: 2rem;
+      padding: 20px;
+      text-align: right;
+      border-bottom: 2px solid #333;
+    }
+
+    .buttons {
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    button {
+      padding: 20px;
+      font-size: 1.2rem;
+      border: 1px solid #333;
+      background: #444;
+      color: white;
+      cursor:pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #666;
+    }
+
+    .operator {
+      background: #e7ae52;
+    }
+    .operator:hover {
+      background: #e67e22;
+    }
+
+    .equal {
+      background: #27ae60;
+      grid-column: span 2;
+    }
+    .equal:hover {
+      background: #2ecc71;
+    }
+
+    .clear {
+      background: #e74c3c;
+      grid-column: span 2;
+    }
+    .clear:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button onclick="deleteChar()">DEL</button>
+      <button class="operator" onclick="appendOperator('*')">×</button>
+
+      <button onclick="appendNumber('7')">7</button>
+      <button onclick="appendNumber('8')">8</button>
+      <button onclick="appendNumber('9')">9</button>
+      <button class="operator" onclick="appendOperator('-')">−</button>
+
+      <button onclick="appendNumber('4')">4</button>
+      <button onclick="appendNumber('5')">5</button>
+      <button onclick="appendNumber('6')">6</button>
+      <button class="operator" onclick="appendOperator('+')">+</button>
+
+      <button onclick="appendNumber('1')">1</button>
+      <button onclick="appendNumber('2')">2</button>
+      <button onclick="appendNumber('3')">3</button>
+      <button class="operator" onclick="appendOperator('/')">÷</button>
+
+      <button class="equal" onclick="calculate()">=</button>
+      <button onclick="appendNumber('0')">0</button>
+      <button onclick="appendNumber('.')">.</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+    let currentInput = "0";
+
+    function updateDisplay() {
+      display.textContent = currentInput;
+    }
+
+    function appendNumber(number) {
+      if (currentInput === "0") {
+        currentInput = number;
+      } else {
+        currentInput += number;
+      }
+      updateDisplay();
+    }
+
+    function appendOperator(operator) {
+      if (/[+\-*/]$/.test(currentInput)) {
+        currentInput = currentInput.slice(0, -1) + operator;
+      } else {
+        currentInput += operator;
+      }
+      updateDisplay();
+    }
+
+    function clearDisplay() {
+      currentInput = "0";
+      updateDisplay();
+    }
+
+    function deleteChar() {
+      currentInput = currentInput.slice(0, -1);
+      if (currentInput === "") currentInput = "0";
+      updateDisplay();
+    }
+
+    function calculate() {
+      try {
+        currentInput = eval(currentInput).toString();
+      } catch {
+        currentInput = "Error";
+      }
+      updateDisplay();
+    }
+    // document.addEventListener("keydown", (event) => {
+    //   if (!isNaN(event.key) || event.key === ".") {
+    //     appendNumber(event.key);
+    //   } else if (["+", "-", "*", "/"].includes(event.key)) {
+    //     appendOperator(event.key);
+    //   } else if (event.key === "Enter") {
+    //     calculate();
+    //   } else if (event.key === "Backspace") {
+    //     deleteChar();
+    //   } else if (event.key === "Escape") {
+    //     clearDisplay();
+    //   }
+    // });
+  </script>
+
+</body>
+</html>
